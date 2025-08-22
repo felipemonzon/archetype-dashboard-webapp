@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="title">{{ title }}</h4>
+    <p class="category">{{ subtitle }}</p>
+  </div>
+  <div class="card-body">
+    <div [attr.id]="chartId" class="ct-chart {{ chartClass }}"></div>
+    <div class="card-footer">
+      <div class="legend">
+        @for(item of legendItems; track legendItems) {
+          <span>
+            <i [ngClass]="item.imageClass"></i> {{ item.title }}
+          </span>
+        }
+        @if(withHr) {
+          <hr>
+        }
+      </div>
+      <div class="stats">
+        <i [ngClass]="footerIconClass"></i> {{ footerText }}
+      </div>
+    </div>
+  </div>
+</div>

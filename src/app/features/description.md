@@ -1,0 +1,1 @@
+this directory is the heart of application, each domain is organized into its own folder

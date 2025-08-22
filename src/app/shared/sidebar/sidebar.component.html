@@ -1,0 +1,16 @@
+<div class="sidebar-wrapper">
+    <div class="logo text-center">Archetype</div>
+    <ul class="nav responsive-nav">
+        @if(isMobileMenu()) { 
+            <li>
+                <a class="nav-link" [routerLink]="['/logout']">
+                    <p class="text-center">Log out</p>
+                </a>
+            </li> 
+        }
+        @if(isMobileMenu()) {
+            <li class="separator hidden-lg hidden-md"></li>
+        }
+        <app-menu></app-menu>
+    </ul>
+</div>

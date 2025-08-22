@@ -1,0 +1,31 @@
+import { SPINNER, POSITION, PB_DIRECTION, NgxUiLoaderConfig } from 'ngx-ui-loader';
+
+export const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+    bgsColor: 'white',
+    bgsOpacity: 0.5,
+    bgsPosition: POSITION.centerCenter,
+    bgsSize: 150,
+    bgsType: SPINNER.rotatingPlane,
+    blur: 6,
+    delay: 0,
+    fgsColor: 'white',
+    fgsPosition: POSITION.centerCenter,
+    fgsSize: 150,
+    fgsType: SPINNER.threeStrings,
+    gap: 24,
+    logoPosition: POSITION.centerCenter,
+    logoSize: 120,
+    logoUrl: '',
+    masterLoaderId: 'master',
+    overlayBorderRadius: '0',
+    overlayColor: 'rgba(40, 40, 40, 0.8)',
+    pbColor: 'blue',
+    pbDirection: PB_DIRECTION.leftToRight,
+    pbThickness: 3,
+    hasProgressBar: true,
+    text: 'Cargando..',
+    textColor: '#FFFFFF',
+    textPosition: POSITION.centerCenter,
+    maxTime: 400,
+    minTime: 200
+};

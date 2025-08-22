@@ -1,0 +1,1 @@
+this folder use to global service, logging, guard, HTTP interceptor

@@ -1,0 +1,32 @@
+@for(menuItem of menuItems; track menuItem.id){
+    @if(menuItem.children.length == 0) {
+        <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="[menuItem.path]">
+                <i class="{{menuItem.icon}}"></i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+    } @else {
+        <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" data-bs-toggle="collapse" [attr.href]="'#collapse-' + menuItem.id" aria-expanded="false" [attr.aria-controls]="'collapse-' + menuItem.id">
+                <i class="{{menuItem.icon}}"></i>
+                <p>
+                    {{menuItem.title}}
+                    <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse" [id]="'collapse-' + menuItem.id">
+                <ul class="nav">
+                    @for(menuChildren of menuItem.children; track menuChildren.id){
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="[menuChildren.path]">
+                                <i class="{{menuChildren.icon}} sidebar-mini"></i>
+                                <span class="sidebar-normal">{{menuChildren.title}}</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </li>
+    }
+}

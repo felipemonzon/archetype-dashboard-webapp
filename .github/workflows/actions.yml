@@ -37,6 +37,10 @@ jobs:
       # Paso 3: Instalar dependencias de Node.js
       - name: Instalar dependencias
         run: npm install
+      
+      # PASO ADICIONAL: Instalar Puppeteer para pruebas en entorno CI
+      - name: Instalar Puppeteer
+        run: npm install puppeteer --save-dev
 
       # --- Etapa de Build ---
       - name: Construir el proyecto

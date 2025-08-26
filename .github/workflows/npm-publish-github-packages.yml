@@ -1,0 +1,86 @@
+# Nombre del flujo de trabajo de GitHub Actions
+name: Angular CI/CD
+
+# Define los eventos que activan el flujo de trabajo
+on:
+  pull_request:
+    branches:
+      - main  # Se ejecuta en cada pull request a la rama principal
+
+# Define los trabajos (jobs) que se ejecutarán
+jobs:
+  build_test_analyze:
+    # El trabajo se ejecuta en el sistema operativo Ubuntu más reciente
+    runs-on: ubuntu-latest
+    
+    # Define las variables de entorno para el trabajo
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Secreto para la autenticación en SonarCloud
+      SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}  # Reemplaza con tu organización de SonarCloud
+      SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }} # Reemplaza con la clave de tu proyecto en SonarCloud
+
+    # Pasos del trabajo
+    steps:
+      # Paso 1: Checkout del código del repositorio
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+        with:
+          # Necesario para el análisis de SonarCloud de los pull requests
+          fetch-depth: 0
+      
+      # Paso 2: Configurar Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # Usa una versión LTS de Node.js, como la 18
+
+      # Paso 3: Instalar dependencias de Node.js
+      - name: Instalar dependencias
+        run: npm install
+
+      # --- Etapa de Build ---
+      - name: Construir el proyecto
+        run: npm run build -- --configuration=production
+
+      # --- Etapa de Test ---
+      - name: Ejecutar pruebas unitarias
+        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+
+      # --- Etapa de SonarCloud ---
+      # Paso 4: Instalar y ejecutar el escáner de SonarCloud
+      - name: Análisis de SonarCloud
+        if: success()  # Se ejecuta solo si las etapas anteriores fueron exitosas
+        uses: SonarSource/sonarcloud-github-action@v2.2.0
+        with:
+          args: >
+            -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ env.SONAR_ORGANIZATION }}
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.token=${{ env.SONAR_TOKEN }}
+            # Define el archivo de informe de cobertura de código
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+          
+      - name: 'Subir informe de cobertura de código'
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage
+          retention-days: 7
+
+      # --- Etapa de Pull Request ---
+      # Paso 5: Crear un pull request al main si el flujo de trabajo es exitoso
+      # Este paso se puede ajustar para diferentes escenarios de despliegue
+      - name: Crear Pull Request
+        if: success() && github.ref == 'refs/heads/release' # O la rama que uses para tu CI
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: pull } = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'feat: Automatic Pull Request from CI',
+              head: context.ref.replace('refs/heads/', ''),
+              base: 'main', # Cambia a tu rama de destino si es diferente
+              body: 'This is an auto-generated pull request from the CI/CD workflow.'
+            });
+            core.info(`Created pull request: ${pull.html_url}`);

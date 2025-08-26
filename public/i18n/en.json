@@ -1,0 +1,93 @@
+{
+  "app": {
+    "title": { 
+        "complete": "Archetype angular dashboard",
+        "short": "Archetype"
+    },
+    "menu": {
+        "dashboard": "Dashboard",
+        "management": {
+            "title": "Management",
+            "users": "Users",
+            "settings": "Settings"
+        }
+    },
+    "copyright": "Made with love for a better web",
+    "forms": {
+        "search": "Search",
+        "reset": "Reset",
+        "save": "Save",
+        "update": "Update",
+        "delete": "Delete"
+    },
+    "login": {
+        "form": {
+            "title": "Login",
+            "username": "Username",
+            "password": "Password",
+            "login": "Login",
+            "buttonLogin": "Log In",
+            "placeholder": {
+                "username": "Enter username",
+                "password": "Enter password"
+            }
+        }
+    },
+    "user": {
+        "configuration": {
+            "profile": "Profile",
+            "settings": "Settings",
+            "logout": "Log Out"
+        },
+        "form": {
+            "title": "User Management",
+            "list": "User List",
+            "icon": {
+                "edit": "Edit User",
+                "delete": "Delete User"
+            },
+            "table": {
+                "id": "ID",
+                "name": "Name",
+                "username": "Username",
+                "genre": "Genre",
+                "cellphone": "Cellphone",
+                "email": "Email",
+                "profile": "Profile",
+                "office": "Office",
+                "status": "Status",
+                "actions": "Actions",
+                "total": "Total"
+            },
+            "messages": {
+                "userNotFound": "No users found",
+                "profileNotFound": "No profiles found"
+            }
+        }
+    },
+    "messages": {
+        "title": {
+            "warning": "Warning!",
+            "error": "Error!",
+            "info": "Info",
+            "successTitle": "Success!"
+        },
+        "errors": {
+            "genericError": "An error has occurred, please try again later",
+            "notFound": "Not Found - The requested resource was not found",
+            "forbidden": "Access Denied - You do not have permission to access this resource",
+            "badRequest": "Bad Request; please check the entered data",
+            "userAndPasswordWrong": "Incorrect username or password",
+            "sessionExpired": "Your session has expired, please log in again",
+            "internalServerError": "Internal Server Error, please try again later or contact support",
+            "serviceUnavailable": "Service Unavailable in this moment",
+            "dateValidation": "Empty Fields or Invalid Date Format"
+        },
+        "success": {
+            "dataCreated": "Data Created Successfully",
+            "dataUpdated": "Data Updated Successfully",
+            "dataDeleted": "Data Deleted Successfully"
+        }
+    }
+  }
+}

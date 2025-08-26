@@ -16,26 +16,26 @@ export class MenuService {
   private menuItems = signal<MenuInfo[]>([
     {
       id: 1,
-      title: 'Dashboard',
+      title: 'app.menu.dashboard',
       icon: 'fa fa-dashboard',
       path: 'welcome',
       children: []
     },
     {
       id: 2,
-      title: 'Administración',
+      title: 'app.menu.management.title',
       icon: 'fa fa-cogs',
       children: [
         {
           id: 1,
-          title: 'Usuarios',
+          title: 'app.menu.management.users',
           icon: 'fa fa-users',
           path: 'users',
           children: []
         },
         {
           id: 2,
-          title: 'Configuración',
+          title: 'app.menu.management.settings',
           icon: 'fa fa-cog',
           path: '/admin/settings',
           children: []

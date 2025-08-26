@@ -11,11 +11,14 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { LoginComponent } from './features/login/component/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './shared/home/home.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuComponent } from './features/menu/component/menu.component';
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { HttpInterceptor } from './core/interceptor/HttpInterceptorService';
 import { ServerErrorInterceptor } from './core/interceptor/HttpErrorInterceptor';
+import { MissingTranslationHandler, TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { MyMissingTranslationHandler } from './core/exception/missing.translation.exception';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpLoaderFactory } from './shared/config/translate.config';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,18 @@ import { ServerErrorInterceptor } from './core/interceptor/HttpErrorInterceptor'
     FormsModule,
     NgxUiLoaderHttpModule.forRoot({ showForeground: true}),
     NgbModule,
-    NgbModule
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'es',
+      missingTranslationHandler: { 
+        provide: MissingTranslationHandler,
+        useClass: MyMissingTranslationHandler,
+      },
+    }),
   ],
   providers: [
     provideClientHydration(),

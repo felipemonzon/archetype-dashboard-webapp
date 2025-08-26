@@ -6,8 +6,7 @@ import { LoginService } from '../service/login.service';
 @Component({
   selector: 'app-login',
   standalone: false,
-  templateUrl: './login.component.html',
-  styles: ``
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});

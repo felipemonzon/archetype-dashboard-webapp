@@ -1,22 +1,39 @@
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class MessagesConstant {
-    // TITLES
-    static WARNING_TITLE = '¡Advertencia!';
-    static ERROR_TITLE = '¡Error!';
-    static SUCCESS_TITLE = '¡Éxito!';
-    // MESSAGE
-    static USER_AND_PASSWORD_WRONG = "Usuario Y/o Contraseña Incorrecta.";
-    static GENERIC_ERROR = 'Ocurrio un Error. \n ¡Contacte con el Administrador!';
-    static NOT_FOUND = 'Servicio no Disponible';
-    static FORBIDDEN = '¡No Tiene los Permisos Necesarios Para Seguir Navegando!';
-    static BAD_REQUEST = "Ocurrio un Error al Enviar los Datos. ";
-    //SUCCESS PROCESS
-    static SAVE_SUCCESS = 'Datos Registrados con Éxito';
-    static UPDATE_SUCCESS = 'Datos Actualizados con Éxito';
-    static DELETE_SUCCESS = 'Datos Eliminados con Éxito';
+  static translateService: TranslateService;
+  constructor(private translateService: TranslateService) {
+    MessagesConstant.translateService = this.translateService;
+  }
 
-    static DELETE_USER_QUESTION = '¿Deseas Eliminar el Usuario?';
-    static DATE_VALIDATION = 'Campos Vacios o Formato de Fechas No Valido';
+  public static readonly MESSAGES = {
+    // Claves de traducción
+    WARNING_TITLE: 'messages.titles.warning',
+    ERROR_TITLE: 'messages.titles.error',
+    SUCCESS_TITLE: 'messages.titles.success',
+    USER_AND_PASSWORD_WRONG: 'messages.errors.userAndPasswordWrong',
+    GENERIC_ERROR: 'messages.errors.genericError',
+    NOT_FOUND: 'messages.errors.notFound',
+    FORBIDDEN: 'messages.errors.forbidden',
+    BAD_REQUEST: 'messages.errors.badRequest',
+    SESSION_EXPIRED: 'messages.errors.sessionExpired',
+    INTERNAL_SERVER_ERROR: 'messages.errors.internalServerError',
+    SERVICE_UNAVAILABLE: 'messages.errors.serviceUnavailable',
+    SAVE_SUCCESS: 'messages.success.saveSuccess',
+    UPDATE_SUCCESS: 'messages.success.updateSuccess',
+    DELETE_SUCCESS: 'messages.success.deleteSuccess',
+    DATE_VALIDATION: 'messages.validations.dateValidation',
+  };
+
+  /**
+   * Método estático para obtener un mensaje traducido.
+   * @param key La clave del mensaje a traducir (ej. 'messages.welcome').
+   * @param translateService La instancia de TranslateService.
+   * @returns El mensaje traducido.
+   */
+  public static getMessage(key: string): string {
+    return this.translateService.instant(key);
+  }
 }

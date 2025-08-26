@@ -1,0 +1,102 @@
+{
+  "app": {
+    "title": { 
+        "complete": "Arquetipo de dashboard en angular",
+        "short": "Arquetipo angular"
+    },
+    "menu": {
+        "dashboard": "Tablero",
+        "management": {
+            "title": "Administración",
+            "users": "Usuarios",
+            "settings": "Configuración"
+        }
+    },
+    "copyright": "Made with love for a better web",
+    "forms": {
+        "search": "Buscar",
+        "reset": "Reiniciar",
+        "save": "Guardar",
+        "update": "Actualizar",
+        "delete": "Eliminar"
+    },
+    "login": {
+        "configuration": {
+            "profile": "Perfil",
+            "settings": "Configuración",
+            "logout": "Cerrar sesión"
+        },
+        "form": {
+            "title": "Iniciar sesión",
+            "username": "Usuario",
+            "password": "Contraseña",
+            "login": "Iniciar sesión",
+            "buttonLogin": "Iniciar sesión",
+            "placeholder": {
+                "username": "Ingrese su usuario",
+                "password": "Ingrese su contraseña"
+            }
+        },
+        "messages": {
+            "userRequired": "¡El nombre de usuario es obligatorio!",
+            "passwordRequired": "¡La contraseña es obligatoria!"
+        }
+    },
+    "user": {
+        "configuration": {
+            "profile": "Perfil",
+            "settings": "Configuración",
+            "logout": "Cerrar sesión"
+        },
+        "form": {
+            "title": "Administración de usuarios",
+            "list": "Lista de usuarios",
+            "icon": {
+                "edit": "Editar usuario",
+                "delete": "Eliminar usuario"
+            },
+            "table": {
+                "id": "ID",
+                "name": "Nombre",
+                "username": "Usuario",
+                "genre": "Género",
+                "cellphone": "Teléfono",
+                "email": "Correo electrónico",
+                "profile": "Perfil",
+                "office": "Sucursal",
+                "status": "Estatus",
+                "actions": "Acciones",
+                "total": "Total"
+            },
+            "messages": {
+                "userNotFound": "No se encontraron usuarios",
+                "profileNotFound": "Sin perfil"
+            }
+        }
+    },
+    "messages": {
+        "title": {
+            "warning": "¡Advertencia!",
+            "error": "¡Error!",
+            "info": "Info",
+            "successTitle": "¡Éxito!"
+        },
+        "errors": {
+            "genericError": "Ha ocurrido un error, por favor intente más tarde",
+            "notFound": "No Encontrado - El recurso solicitado no fue encontrado",
+            "forbidden": "Acceso Denegado - No tiene permiso para acceder a este recurso",
+            "badRequest": "Solicitud Incorrecta; por favor verifique los datos ingresados",
+            "userAndPasswordWrong": "Usuario o contraseña incorrectos",
+            "sessionExpired": "Su sesión ha expirado, por favor inicie sesión nuevamente",
+            "internalServerError": "Error Interno del Servidor, por favor intente más tarde o contacte al soporte",
+            "serviceUnavailable": "Servicio No Disponible en este momento",
+            "dateValidation": "Campos Vacios o Formato de Fechas No Valido"
+        },
+        "success": {
+            "dataCreated": "Datos Creados con Éxito",
+            "dataUpdated": "Datos Actualizados con Éxito",
+            "dataDeleted": "Datos Eliminados con Éxito"
+        }
+    }
+  }
+}

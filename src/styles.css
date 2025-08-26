@@ -2903,6 +2903,7 @@ table.bg-black>thead>tr>th {
 
   table.bg-azure>thead {
      background-color: #23CCEF !important;
+     --bs-table-bg: #23CCEF;
  }
 
  table.bg-azure>thead>tr>th {

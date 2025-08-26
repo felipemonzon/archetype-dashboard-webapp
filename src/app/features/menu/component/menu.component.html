@@ -3,7 +3,7 @@
         <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" [routerLink]="[menuItem.path]">
                 <i class="{{menuItem.icon}}"></i>
-                <p>{{menuItem.title}}</p>
+                <p>{{menuItem.title | translate}}</p>
             </a>
         </li>
     } @else {
@@ -11,7 +11,7 @@
             <a class="nav-link" data-bs-toggle="collapse" [attr.href]="'#collapse-' + menuItem.id" aria-expanded="false" [attr.aria-controls]="'collapse-' + menuItem.id">
                 <i class="{{menuItem.icon}}"></i>
                 <p>
-                    {{menuItem.title}}
+                    {{menuItem.title | translate}}
                     <b class="caret"></b>
                 </p>
             </a>
@@ -21,7 +21,7 @@
                         <li class="nav-item">
                             <a class="nav-link" [routerLink]="[menuChildren.path]">
                                 <i class="{{menuChildren.icon}} sidebar-mini"></i>
-                                <span class="sidebar-normal">{{menuChildren.title}}</span>
+                                <span class="sidebar-normal">{{menuChildren.title | translate}}</span>
                             </a>
                         </li>
                     }

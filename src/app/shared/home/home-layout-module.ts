@@ -7,6 +7,9 @@ import { WelcomeComponent } from "../../features/welcome/welcome.component";
 import { DashboardComponent } from "../../features/dashboard/component/dashboard.component";
 import { UserComponent } from "../../features/user/component/user.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { TranslatePipe, TranslateDirective, TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { HttpClient } from "@angular/common/http";
+import { HttpLoaderFactory } from "../config/translate.config";
 
 @NgModule({
   imports: [
@@ -15,7 +18,16 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    TranslatePipe, 
+    TranslateDirective,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   declarations: [
     WelcomeComponent,

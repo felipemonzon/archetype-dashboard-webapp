@@ -10,7 +10,7 @@ export const ServerErrorInterceptor: HttpInterceptorFn = (request, next) => {
   const logout = inject(SecurityUtilities);
   return next(request).
     pipe(
-      catchError((error) => { 
+      catchError((error) => {
         let errorMessage = "";
         // if true = client-side error else backend error
         errorMessage =
@@ -22,52 +22,52 @@ export const ServerErrorInterceptor: HttpInterceptorFn = (request, next) => {
           case HttpStatusCode.BadRequest:
             MessagingNotification.create(
               MessagingNotification.WARNING_TYPE,
-              MessagesConstant.WARNING_TITLE,
-              MessagesConstant.BAD_REQUEST + error.error.message
+              MessagesConstant.getMessage(MessagesConstant.MESSAGES.WARNING_TITLE),
+              MessagesConstant.getMessage(MessagesConstant.MESSAGES.BAD_REQUEST + error.error.message),
             );
             console.error(error.status, errorMessage);
             break;
           case HttpStatusCode.Unauthorized:
             MessagingNotification.create(
               MessagingNotification.WARNING_TYPE,
-              MessagesConstant.WARNING_TITLE,
-              MessagesConstant.USER_AND_PASSWORD_WRONG
+              MessagesConstant.getMessage(MessagesConstant.MESSAGES.WARNING_TITLE),
+              MessagesConstant.getMessage(MessagesConstant.MESSAGES.USER_AND_PASSWORD_WRONG),
             );
             console.error(error.status, errorMessage);
             break;
           case HttpStatusCode.Forbidden:
             MessagingNotification.sessionExpired(
               MessagingNotification.WARNING_TYPE,
-              MessagesConstant.WARNING_TITLE,
-              MessagesConstant.FORBIDDEN
-            ).then((response) => {              
+              MessagesConstant.getMessage(MessagesConstant.MESSAGES.WARNING_TITLE),
+              MessagesConstant.getMessage(MessagesConstant.MESSAGES.FORBIDDEN)
+            ).then((response) => {        
+              console.error(error.status, errorMessage);
               if (response) {
                 logout.doLogout();
               }
             });
-            console.error(error.status, errorMessage);
             break;
           case HttpStatusCode.NotFound:
             MessagingNotification.create(
               MessagingNotification.WARNING_TYPE,
-              MessagesConstant.WARNING_TITLE,
-              MessagesConstant.NOT_FOUND
+              MessagesConstant.getMessage(MessagesConstant.MESSAGES.WARNING_TITLE),
+              MessagesConstant.getMessage(MessagesConstant.MESSAGES.NOT_FOUND)
             );
             console.error(error.status, errorMessage);
             break;
           case HttpStatusCode.InternalServerError:
             MessagingNotification.create(
               MessagingNotification.ERROR_TYPE,
-              MessagesConstant.ERROR_TITLE,
-              MessagesConstant.GENERIC_ERROR
+              MessagesConstant.getMessage(MessagesConstant.MESSAGES.ERROR_TITLE),
+              MessagesConstant.getMessage(MessagesConstant.MESSAGES.GENERIC_ERROR)
             );
             console.error(error.status, errorMessage);
             break;
           default:
             MessagingNotification.create(
               MessagingNotification.ERROR_TYPE,
-              MessagesConstant.ERROR_TITLE,
-              MessagesConstant.GENERIC_ERROR
+              MessagesConstant.getMessage(MessagesConstant.MESSAGES.ERROR_TITLE),
+              MessagesConstant.getMessage(MessagesConstant.MESSAGES.GENERIC_ERROR)
             );
             console.error(error.status, errorMessage);
             break;

@@ -24,7 +24,7 @@ module.exports = function (config) {
       suppressAll: true // Oculta las pruebas que pasaron
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/your-project-name'),
+      dir: require('path').join(__dirname, './coverage/archetype-dashboard-webapp'),
       subdir: '.',
       reporters: [
         { type: 'html' },
@@ -37,15 +37,17 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromeHeadlessCI'],
+    browsers: ['Chrome_without_security', 'ChromeHeadlessCI'],
     customLaunchers: {
-      ChromeHeadlessCI: {
+      Chrome_without_security: {
         base: 'ChromeHeadless',
         flags: [
           '--no-sandbox',
           '--headless',
           '--disable-gpu',
-          '--remote-debugging-port=9222'
+          '--disable-setuid-sandbox',
+          '--remote-debugging-port=9222',
+          '--disable-dev-shm-usage'
         ]
       }
     },

@@ -12,7 +12,7 @@ jobs:
   build_test_analyze:
     # El trabajo se ejecuta en el sistema operativo Ubuntu más reciente
     runs-on: ubuntu-latest
-    
+
     # Define las variables de entorno para el trabajo
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Secreto para la autenticación en SonarCloud
@@ -27,7 +27,7 @@ jobs:
         with:
           # Necesario para el análisis de SonarCloud de los pull requests
           fetch-depth: 0
-      
+
       # Paso 2: Configurar Node.js
       - name: Configurar Node.js
         uses: actions/setup-node@v4
@@ -50,18 +50,18 @@ jobs:
       # Paso 4: Instalar y ejecutar el escáner de SonarCloud
       - name: Análisis de SonarCloud
         if: success()  # Se ejecuta solo si las etapas anteriores fueron exitosas
-        uses: SonarSource/sonarcloud-github-action@v2.2.0
+        uses: SonarSource/sonarqube-scan-action@v5
         with:
           args: >
             -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ env.SONAR_ORGANIZATION }}
-            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.host.url=${{ env.SONAR_URL }}
             -Dsonar.token=${{ env.SONAR_TOKEN }}
             # Define el archivo de informe de cobertura de código
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-          
+
       - name: 'Subir informe de cobertura de código'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: coverage

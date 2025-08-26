@@ -14,8 +14,9 @@ export const permissionGuard: CanActivateFn = (route, state) => {
       return true;
     }
     */
-    return isLoggedIn || router.navigate(['/forbidden']);
+    console.log('User is authenticated but do not have access.');
+    return isLoggedIn || router.createUrlTree(['/forbidden']);
   }
-
-  return authToken || router.navigate(['/login']);
+  console.warn('User is not authenticated. Redirecting to login.');
+  return router.createUrlTree(['/login']);
 };

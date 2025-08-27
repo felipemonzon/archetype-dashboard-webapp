@@ -135,7 +135,8 @@
             "scripts": [],
             "codeCoverage": true,
             "codeCoverageExclude": [
-              "src/**/*.spec.ts"
+              "**/src/test.ts",
+              "**/*.spec.ts"
             ]
           }
         }

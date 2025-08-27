@@ -11,11 +11,6 @@ on:
   push:
     branches:
       - 'feature/**'  # Activa el flujo de trabajo en pushes a ramas que coincidan con este patrón
-# Add this permissions block to grant the GITHUB_TOKEN write access to pull requests
-permissions:
-  contents: write
-  pull-requests: write # This is the crucial permission for creating a PR
-  id-token: write
 
 # Define los trabajos (jobs) que se ejecutarán
 jobs:
@@ -23,6 +18,12 @@ jobs:
     # El trabajo se ejecuta en el sistema operativo Ubuntu más reciente
     runs-on: ubuntu-latest
     environment: develop  # Entorno de despliegue
+
+    # Add this permissions block to grant the GITHUB_TOKEN write access to pull requests
+    permissions:
+      contents: write
+      pull-requests: write # This is the crucial permission for creating a PR
+      id-token: write
 
     # Define las variables de entorno para el trabajo
     env:

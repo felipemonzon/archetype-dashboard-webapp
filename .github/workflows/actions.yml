@@ -62,6 +62,9 @@ jobs:
       # --- Etapa de Test ---
       - name: Ejecutar pruebas unitarias
         run: npm run test -- --no-watch --no-progress --code-coverage --browsers=ChromeHeadlessNoSandbox
+      
+      - name: 'Listar archivos de cobertura para depuración'
+        run: ls -R coverage/
 
       # --- Etapa de SonarCloud ---
       # Paso 4: Instalar y ejecutar el escáner de SonarCloud

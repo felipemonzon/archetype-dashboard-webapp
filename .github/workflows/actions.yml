@@ -8,10 +8,9 @@ concurrency:
 
 # Define los eventos que activan el flujo de trabajo
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  push:
     branches:
-      - main  # Se ejecuta en cada pull request a la rama principal
+      - 'feature/**'  # Activa el flujo de trabajo en pushes a ramas que coincidan con este patrón
 
 # Define los trabajos (jobs) que se ejecutarán
 jobs:
@@ -95,7 +94,7 @@ jobs:
               repo: context.repo.repo,
               title: 'feat: Automatic Pull Request from CI',
               head: context.ref.replace('refs/heads/', ''),
-              base: 'main', # Cambia a tu rama de destino si es diferente
+              base: 'develop', # Cambia a tu rama de destino si es diferente
               body: 'This is an auto-generated pull request from the CI/CD workflow.'
             });
             core.info(`Created pull request: ${pull.html_url}`);

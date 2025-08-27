@@ -1,6 +1,11 @@
 # Nombre del flujo de trabajo de GitHub Actions
 name: Angular CI/CD
 
+# Configuración de concurrencia para evitar ejecuciones simultáneas
+concurrency:
+  group: develop
+  cancel-in-progress: true
+
 # Define los eventos que activan el flujo de trabajo
 on:
   pull_request:
@@ -15,6 +20,7 @@ jobs:
 
     # Define las variables de entorno para el trabajo
     env:
+      environment: develop  # Entorno de despliegue
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Secreto para la autenticación en SonarCloud
       SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}  # Reemplaza con tu organización de SonarCloud
       SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }} # Reemplaza con la clave de tu proyecto en SonarCloud

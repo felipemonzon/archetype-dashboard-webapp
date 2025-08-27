@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // Oculta las pruebas que pasaron
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage'),
+      dir: require('path').join(__dirname, './coverage/archetype-dashboard-webapp'),
       subdir: '.',
       reporters: [
         { type: 'html' },

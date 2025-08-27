@@ -58,6 +58,16 @@ jobs:
       - name: Instalar karma-junit-reporter
         run: npm install karma-junit-reporter --save-dev
 
+      # Paso de depuración: Lista los archivos en el directorio de trabajo
+      - name: Validar la existencia del informe de cobertura
+        run: |
+          if [ -f "coverage/lcov.info" ]; then
+            echo "✅ ¡Informe de cobertura encontrado!"
+          else
+            echo "❌ Error: No se encontró el informe de cobertura lcov.info."
+            exit 1
+          fi
+
       # --- Etapa de Build ---
       - name: Construir el proyecto
         run: npm run build -- --configuration=production

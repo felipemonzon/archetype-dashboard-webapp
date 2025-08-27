@@ -25,15 +25,15 @@ module.exports = function (config) {
       suppressAll: true // Oculta las pruebas que pasaron
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/archetype-dashboard-webapp'),
+      dir: require('path').join(__dirname, './coverage'),
       subdir: '.',
       reporters: [
         { type: 'html' },
         { type: 'text-summary' },
-        { type: 'lcovonly' }
+        { type: 'lcovonly', subdir: '.'}
       ]
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

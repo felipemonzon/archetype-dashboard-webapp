@@ -9,11 +9,11 @@ export const permissionGuard: CanActivateFn = (route, state) => {
   if (authToken) {
     const userData = SecurityUtilities.getUser();
     const isLoggedIn: boolean = (route.data['role'] && userData.profiles.findIndex((i) => i.name === route.data['role']) === 0);
-    /**
-    if (route.data.role && userData.profiles.findIndex((i) => i.name === route.data.role) === 0) {
+
+    if (route.data['role'] && userData.profiles.findIndex((i) => i.name === route.data['role']) === 0) {
       return true;
     }
-    */
+
     console.log('User is authenticated but do not have access.');
     return isLoggedIn || router.createUrlTree(['/forbidden']);
   }

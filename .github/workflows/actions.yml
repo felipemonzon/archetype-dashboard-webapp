@@ -12,6 +12,11 @@ on:
     branches:
       - 'feature/**'  # Activa el flujo de trabajo en pushes a ramas que coincidan con este patrón
 
+permissions:
+  contents: write
+  pull-requests: write # This is the crucial permission for creating a PR
+  id-token: write
+
 # Define los trabajos (jobs) que se ejecutarán
 jobs:
   pipeline:

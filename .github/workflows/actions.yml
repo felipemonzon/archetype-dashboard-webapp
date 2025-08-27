@@ -141,8 +141,8 @@ jobs:
       # Paso 7: Aprobar el pull request automáticamente si todo fue exitoso
       - name: Aprobar Pull Request
         if: success()
-        uses: juliangruber/approve-pull-request-action@v2
+        uses: hmarr/auto-approve-action@v4
         with:
-          number: ${{ env.PR_NUMBER }}
-          body: '✅ Este PR ha pasado el análisis de calidad de código de SonarCloud.'
+          pull-request-number: ${{ github.event.inputs.pullRequestNumber }}
+          review-message: '✅ Este PR ha pasado el análisis de calidad de código de SonarCloud.'
           github-token: ${{ secrets.GITHUB_TOKEN }}

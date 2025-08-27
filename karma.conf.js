@@ -13,11 +13,11 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
       require('karma-junit-reporter'),
+      require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
       jasmine: {
         random: false, // Ejecuta las pruebas en orden secuencial
-        // Puedes agregar opciones de reportería aquí
       },
       clearContext: false // Deja el contexto de Jasmine HTML sin borrar al finalizar la prueba
     },

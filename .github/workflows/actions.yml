@@ -69,6 +69,7 @@ jobs:
       # Paso de depuración: Lista los archivos en el directorio de trabajo
       - name: Validar la existencia del informe de cobertura
         run: |
+          ls -R coverage/
           if [ -f "coverage/lcov.info" ]; then
             echo "✅ ¡Informe de cobertura encontrado!"
           else

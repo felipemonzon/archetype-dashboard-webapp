@@ -9,24 +9,26 @@ concurrency:
 # Define los eventos que activan el flujo de trabajo
 on:
   pull_request:
+    types: [opened, synchronize, reopened]
     branches:
       - main  # Se ejecuta en cada pull request a la rama principal
 
 # Define los trabajos (jobs) que se ejecutarán
 jobs:
-  build_test_analyze:
+  pipeline:
     # El trabajo se ejecuta en el sistema operativo Ubuntu más reciente
     runs-on: ubuntu-latest
+    environment: develop  # Entorno de despliegue
 
     # Define las variables de entorno para el trabajo
     env:
-      environment: develop  # Entorno de despliegue
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Secreto para la autenticación en SonarCloud
       SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}  # Reemplaza con tu organización de SonarCloud
       SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }} # Reemplaza con la clave de tu proyecto en SonarCloud
       SONAR_URL: ${{ secrets.SONAR_URL }}  # URL de SonarCloud
-
-    # Pasos del trabajo
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+      # Pasos del trabajo
     steps:
       # Paso 1: Checkout del código del repositorio
       - name: Checkout del repositorio

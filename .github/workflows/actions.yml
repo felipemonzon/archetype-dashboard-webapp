@@ -54,6 +54,9 @@ jobs:
       # PASO ADICIONAL: Instalar Puppeteer para pruebas en entorno CI
       - name: Instalar Puppeteer
         run: npm install puppeteer --save-dev
+      # PASO ADICIONAL: Instalar karma-junit-reporter para reportes de pruebas
+      - name: Instalar karma-junit-reporter
+        run: npm install karma-junit-reporter --save-dev
 
       # --- Etapa de Build ---
       - name: Construir el proyecto

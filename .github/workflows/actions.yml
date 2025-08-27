@@ -88,7 +88,7 @@ jobs:
             -Dsonar.host.url=${{ env.SONAR_URL }}
             -Dsonar.token=${{ env.SONAR_TOKEN }}
             -Dsonar.javascript.lcov.reportPaths=coverage/archetype-dashboard-webapp/lcov.info
-            -Dsonar.coverage.exclusions=**/*.spec.ts,**/*.test.ts
+            -Dsonar.coverage.exclusions=**/*.spec.ts,**/*.test.ts,**/karma.config.js
             -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/test/**,**/*.spec.ts,**/*.test.ts
 
       - name: 'Subir informe de cobertura de código'

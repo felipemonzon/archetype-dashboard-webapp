@@ -127,3 +127,11 @@ jobs:
                 });
                 core.info(`Created pull request: ${pull.html_url}`);
               }
+      # --- Etapa de Pull Request --
+      - name: Aprobar Pull Request
+        if: success()
+        uses: juliangruber/approve-pull-request-action@v1
+        with:
+          number: ${{ github.event.pull_request.number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          body: '✅ Este PR ha pasado el análisis de calidad de código de SonarCloud.'

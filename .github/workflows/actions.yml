@@ -127,16 +127,8 @@ jobs:
                 });
                 core.info(`Created pull request: ${pull.html_url}`);
               }
-      # Paso 6: Encontrar el número del pull request creado
-      - name: Find Pull Request
-        uses: juliangruber/find-pull-request-action@v1
-        id: find-pull-request
-      - run: echo "Pull Request ${number} (${sha})"
-        env:
-          PR_NUMBER: ${{ steps.find-pull-request.outputs.number }}
-          PR_SHA: ${{ steps.find-pull-request.outputs.head-sha }}
 
-      # Paso 7: Aprobar el pull request automáticamente si todo fue exitoso
+      # Paso 6: Aprobar el pull request automáticamente si todo fue exitoso
       - name: Aprobar Pull Request
         if: success()
         uses: hmarr/auto-approve-action@v4

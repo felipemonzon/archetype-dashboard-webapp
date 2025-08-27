@@ -94,7 +94,7 @@ jobs:
               repo: context.repo.repo,
               title: 'feat: Automatic Pull Request from CI',
               head: context.ref.replace('refs/heads/', ''),
-              base: 'develop', # Cambia a tu rama de destino si es diferente
+              base: 'develop',
               body: 'This is an auto-generated pull request from the CI/CD workflow.'
             });
             core.info(`Created pull request: ${pull.html_url}`);

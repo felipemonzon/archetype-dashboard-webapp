@@ -8,8 +8,6 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
     standalone: false
 })
 export class AppComponent {
-  title = 'archetype-dashboard-webapp';
-
   constructor(private ngxService: NgxUiLoaderService) {}
 
   ngOnInit() {

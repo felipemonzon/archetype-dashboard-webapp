@@ -12,10 +12,11 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      require('@angular/build-angular/plugins/karma')
     ],
     client: {
       jasmine: {
+        random: false, // Ejecuta las pruebas en orden secuencial
         // Puedes agregar opciones de reportería aquí
       },
       clearContext: false // Deja el contexto de Jasmine HTML sin borrar al finalizar la prueba
@@ -36,8 +37,8 @@ module.exports = function (config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['ChromeHeadlessNoSandbox'],
+    autoWatch: false,
+    browsers: ['Chrome','ChromeHeadlessNoSandbox'],
     customLaunchers: {
       ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',

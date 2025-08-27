@@ -131,8 +131,6 @@ jobs:
       - name: Find Pull Request
         uses: juliangruber/find-pull-request-action@v1
         id: find-pull-request
-        with:
-          branch: develop
       - run: echo "Pull Request ${number} (${sha})"
         env:
           PR_NUMBER: ${{ steps.find-pull-request.outputs.number }}

@@ -10,8 +10,8 @@
                 <div class="card-body">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="username">{{ 'app.user.form.username' | translate }}</label>
-                      <input class="form-control text-none" id="username" placeholder="{{ 'app.user.login.placeholder.username' | translate }}" type="text" formControlName="username" [class.is-invalid]="form['username'].invalid && form['username'].touched" autocomplete="off" autofocus/>
+                      <label for="username">{{ 'app.login.form.username' | translate }}</label>
+                      <input class="form-control text-none" id="username" placeholder="{{ 'app.login.form.placeholder.username' | translate }}" type="text" formControlName="username" [class.is-invalid]="form['username'].invalid && form['username'].touched" autocomplete="off" autofocus/>
                       <ng-template [ngIf]="form['username'].invalid && form['username'].touched">
                         <div class="bg-danger text-white p-1 mt-2">
                             <p>{{ 'app.login.messages.userRequired' | translate }}</p>

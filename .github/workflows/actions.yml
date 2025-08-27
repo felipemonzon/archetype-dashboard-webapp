@@ -143,6 +143,6 @@ jobs:
         if: success()
         uses: hmarr/auto-approve-action@v4
         with:
-          pull-request-number: ${{ github.event.inputs.pullRequestNumber }}
+          pull-request-number: ${{ github.event.pull_request.number }}
           review-message: '✅ Este PR ha pasado el análisis de calidad de código de SonarCloud.'
           github-token: ${{ secrets.GITHUB_TOKEN }}

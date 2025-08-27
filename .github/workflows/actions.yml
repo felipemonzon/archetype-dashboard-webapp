@@ -11,7 +11,7 @@ on:
   push:
     branches:
       - 'feature/**'  # Activa el flujo de trabajo en pushes a ramas que coincidan con este patrón
-
+# Add this permissions block to grant the GITHUB_TOKEN write access to pull requests
 permissions:
   contents: write
   pull-requests: write # This is the crucial permission for creating a PR

@@ -28,7 +28,6 @@ describe('permissionGuard', () => {
       // Proveemos los mocks y el guard
       providers: [
         { provide: Router, useValue: mockRouter },
-        { provide: SecurityUtilities, useValue: securityUtilitiesSpy },
         provideRouter([
           { path: 'login', loadChildren: () => Promise.resolve(MockModule) },
           { path: 'forbidden', loadChildren: () => Promise.resolve(MockModule) }

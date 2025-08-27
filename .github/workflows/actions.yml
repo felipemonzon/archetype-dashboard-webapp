@@ -69,8 +69,7 @@ jobs:
       # Paso de depuración: Lista los archivos en el directorio de trabajo
       - name: Validar la existencia del informe de cobertura
         run: |
-          ls -R coverage/
-          if [ -f "coverage/lcov.info" ]; then
+          if [ -f "coverage/archetype-dashboard-webapp/lcov.info" ]; then
             echo "✅ ¡Informe de cobertura encontrado!"
           else
             echo "❌ Error: No se encontró el informe de cobertura lcov.info."

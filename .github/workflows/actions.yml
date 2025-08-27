@@ -72,6 +72,8 @@ jobs:
             -Dsonar.token=${{ env.SONAR_TOKEN }}
             # Define el archivo de informe de cobertura de código
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.coverage.exclusions=**/*.spec.ts,**/*.test.ts
+            -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/test/**,**/*.spec.ts,**/*.test.ts
 
       - name: 'Subir informe de cobertura de código'
         uses: actions/upload-artifact@v4

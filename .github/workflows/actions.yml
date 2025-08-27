@@ -86,7 +86,7 @@ jobs:
       # Paso 5: Crear un pull request al main si el flujo de trabajo es exitoso
       # Este paso se puede ajustar para diferentes escenarios de despliegue
       - name: Crear Pull Request
-        if: success() && github.ref == 'refs/heads/feature' # O la rama que uses para tu CI
+        if: success() && startsWith(github.ref, 'refs/heads/feature/') # O la rama que uses para tu CI
         uses: actions/github-script@v6
         with:
           script: |

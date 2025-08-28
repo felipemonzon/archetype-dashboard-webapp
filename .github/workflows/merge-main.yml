@@ -44,8 +44,17 @@ jobs:
         run: npm install
 
       - name: Ejecutar pruebas
-        run: npm run test -- --no-watch --no-progress --code-coverage
+        run: npm run test -- --no-watch --no-progress --code-coverage --browsers=ChromeHeadlessNoSandbox
 
+        # Paso de depuración: Lista los archivos en el directorio de trabajo
+      - name: Validar la existencia del informe de cobertura
+        run: |
+          if [ -f "coverage/archetype-dashboard-webapp/lcov.info" ]; then
+            echo "✅ ¡Informe de cobertura encontrado!"
+          else
+            echo "❌ Error: No se encontró el informe de cobertura lcov.info."
+            exit 1
+          fi
       - name: Análisis de SonarCloud
         if: success()
         uses: SonarSource/sonarqube-scan-action@v5

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
@@ -7,12 +7,10 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
     styleUrl: './app.component.css',
     standalone: false
 })
-export class AppComponent {
-  title = 'archetype-dashboard-webapp';
-
+export class AppComponent implements OnInit {
   constructor(private ngxService: NgxUiLoaderService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.ngxService.start();
     setTimeout(() => {
       this.ngxService.stop();

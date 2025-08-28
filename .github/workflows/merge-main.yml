@@ -65,8 +65,8 @@ jobs:
             -Dsonar.host.url=${{ env.SONAR_URL }}
             -Dsonar.token=${{ env.SONAR_TOKEN }}
             -Dsonar.javascript.lcov.reportPaths=coverage/archetype-dashboard-webapp/lcov.info
-            -Dsonar.coverage.exclusions=**/*.spec.ts,**/*.test.ts,**/style.*
-            -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/*.spec.ts,**/*.test.ts,**/style.*
+            -Dsonar.coverage.exclusions=**/*.spec.ts,**/*.test.ts,**/style.*,**/karma.conf.js
+            -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/*.spec.ts,**/*.test.ts,**/style.*,**/karma.conf.js
 
   # --- Nueva sección para el push automático a 'main' ---
   deploy-to-main:

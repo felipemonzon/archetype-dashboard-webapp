@@ -84,6 +84,7 @@ jobs:
       - name: Fusionar 'develop' a 'release'
         run: |
           git merge origin/develop -m "Merge develop into release via GitHub Actions"
+          git checkout release
 
-      - name: Subir cambios a 'main'
+      - name: Subir cambios a 'release'
         run: git push

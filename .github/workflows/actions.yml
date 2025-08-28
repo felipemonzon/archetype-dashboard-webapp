@@ -91,7 +91,6 @@ jobs:
             -Dsonar.javascript.lcov.reportPaths=coverage/archetype-dashboard-webapp/lcov.info
             -Dsonar.coverage.exclusions=**/*.spec.ts,**/*.test.ts,**/karma.config.js,**/style.*
             -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/test/**,**/*.spec.ts,**/*.test.ts,**/karma.conf.js,**/style.*
-
       - name: 'Subir informe de cobertura de código'
         uses: actions/upload-artifact@v4
         with:

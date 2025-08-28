@@ -22,7 +22,7 @@ jobs:
     # Add this permissions block to grant the GITHUB_TOKEN write access to pull requests
     permissions:
       contents: write
-      pull-requests: write # This is the crucial permission for creating a PR
+      pull-requests: write
       id-token: write
 
     # Define las variables de entorno para el trabajo

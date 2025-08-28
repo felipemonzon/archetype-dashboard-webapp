@@ -1,4 +1,4 @@
-import { Component, ElementRef, input, Input, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, signal, ViewChild } from '@angular/core';
 import { UserModel } from '../model/user-model';
 import { MessagingNotification } from '../../../shared/messaging/messaging-notification';
 import { ActivatedRoute } from '@angular/router';

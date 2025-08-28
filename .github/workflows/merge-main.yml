@@ -41,7 +41,7 @@ jobs:
           node-version: '20'
 
       - name: Instalar dependencias
-        run: npm ci
+        run: npm install
 
       - name: Ejecutar pruebas
         run: npm run test -- --no-watch --no-progress --code-coverage
@@ -79,11 +79,11 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout main
+          git checkout release
 
-      - name: Fusionar 'develop' a 'main'
+      - name: Fusionar 'develop' a 'release'
         run: |
-          git merge origin/develop -m "Merge develop into main via GitHub Actions"
+          git merge origin/develop -m "Merge develop into release via GitHub Actions"
 
       - name: Subir cambios a 'main'
         run: git push

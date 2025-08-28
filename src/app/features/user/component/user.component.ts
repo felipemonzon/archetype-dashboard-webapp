@@ -1,4 +1,5 @@
-import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, signal, ViewChild } from '@angular/core';
+
 import { UserModel } from '../model/user-model';
 import { MessagingNotification } from '../../../shared/messaging/messaging-notification';
 import { ActivatedRoute } from '@angular/router';
@@ -8,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   standalone: false,
   templateUrl: './user.component.html'
 })
-export class UserComponent {
+export class UserComponent implements OnInit {
   @ViewChild("btnSearch", { static: true })
   public btnSearch!: ElementRef;
   @ViewChild("search", { static: true })

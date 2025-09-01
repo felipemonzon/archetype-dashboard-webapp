@@ -1,11 +1,11 @@
 
 
 # Nombre del flujo de trabajo de GitHub Actions
-name: CI/CD MAIN
+name: CI/CD Main
 
 # Configura la concurrencia para evitar ejecuciones simultáneas
 concurrency:
-  group: release
+  group: main
   cancel-in-progress: true
 
 # Define el evento que activa el flujo de trabajo
@@ -17,7 +17,7 @@ on:
 jobs:
   pipeline:
     runs-on: ubuntu-latest
-    environment: release
+    environment: main
     permissions:
       contents: read
     
@@ -88,12 +88,12 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout release
+          git checkout main
 
-      - name: Fusionar 'develop' a 'release'
+      - name: Fusionar 'release' a 'main'
         run: |
-          git merge origin/develop -m "Merge develop into release via GitHub Actions"
-          git checkout release
+          git merge origin/release -m "Merge release into main via GitHub Actions"
+          git checkout main
 
-      - name: Subir cambios a 'release'
+      - name: Subir cambios a 'main'
         run: git push

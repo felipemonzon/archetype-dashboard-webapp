@@ -69,6 +69,7 @@ jobs:
             -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/*.spec.ts,**/*.test.ts,**/style.*,**/karma.conf.js
 
   # --- Nueva sección para el push automático a 'main' ---
+
   deploy-to-release:
     name: Despliegue a Release
     runs-on: ubuntu-latest

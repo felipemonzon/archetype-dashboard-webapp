@@ -68,9 +68,9 @@ jobs:
             -Dsonar.coverage.exclusions=**/*.spec.ts,**/*.test.ts,**/style.*,**/karma.conf.js
             -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/*.spec.ts,**/*.test.ts,**/style.*,**/karma.conf.js
 
-  # --- Nueva sección para el push automático a 'main' ---
-  deploy-to-main:
-    name: Despliegue a Main
+  # --- Nueva sección para el push automático a 'release' ---
+  deploy-to-release:
+    name: Despliegue a Release
     runs-on: ubuntu-latest
     needs: pipeline  # Se ejecuta solo si el job 'pipeline' es exitoso
     if: success()

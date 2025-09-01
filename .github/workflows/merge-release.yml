@@ -1,7 +1,7 @@
 
 
 # Nombre del flujo de trabajo de GitHub Actions
-name: CI/CD MAIN
+name: CI/CD Release
 
 # Configura la concurrencia para evitar ejecuciones simultáneas
 concurrency:
@@ -12,7 +12,7 @@ concurrency:
 on:
   push:
     branches:
-      - release  # Se inicia en cada push a la rama 'release'
+      - develop  # Se inicia en cada push a la rama 'develop'
 
 jobs:
   pipeline:
@@ -69,8 +69,8 @@ jobs:
             -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/*.spec.ts,**/*.test.ts,**/style.*,**/karma.conf.js
 
   # --- Nueva sección para el push automático a 'main' ---
-  deploy-to-main:
-    name: Despliegue a Main
+  deploy-to-release:
+    name: Despliegue a Release
     runs-on: ubuntu-latest
     needs: pipeline  # Se ejecuta solo si el job 'pipeline' es exitoso
     if: success()

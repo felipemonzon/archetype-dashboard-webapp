@@ -5,6 +5,8 @@ archetype angular webapp
 # Version
 ![version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=felipemonzon_archetype-dashboard-webapp&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=felipemonzon_archetype-dashboard-webapp)
+
 Para más detalle mira el archivo [CHANGELOG](CHANGELOG)
 
 ## Versionado 📌

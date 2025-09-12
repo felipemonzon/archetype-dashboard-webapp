@@ -1,4 +1,5 @@
-import { AuthorityModel } from "./authority.model";
+import { AuthorityModel } from "../../profile/model/authority.model";
+import { SocialNetworkModel } from "./social-network.model";
 
 export interface UserModel {
     id: string;
@@ -10,9 +11,14 @@ export interface UserModel {
     cel: string;
     email: string;
     genre: string;
+    address: string;
+    city: string;
+    country: string;
+    postal_code: number;
     active: boolean;
     authorities: AuthorityModel[];
     enterprise_name: string;
     enterprise_id: number;
     profiles: AuthorityModel[];
+    social_networks: SocialNetworkModel[];
 }

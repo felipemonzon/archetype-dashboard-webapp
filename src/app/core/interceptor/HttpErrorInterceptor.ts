@@ -8,6 +8,7 @@ import { SecurityUtilities } from "../../shared/security/utils/security.utils";
 
 export const ServerErrorInterceptor: HttpInterceptorFn = (request, next) => {
   const logout = inject(SecurityUtilities);
+
   return next(request).
     pipe(
       catchError((error) => {

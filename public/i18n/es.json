@@ -4,6 +4,31 @@
         "complete": "Arquetipo de dashboard en angular",
         "short": "Arquetipo angular"
     },
+    "errors": {
+        "403": {
+            "code": "403",
+            "title": "Acceso denegado",
+            "body": "Lo sentimos, no tienes permiso para acceder a esta página.",
+            "returnText": "Por favor, contacta al administrador o regresa a la página de inicio para continuar.",
+            "buttonText": "Ir a la página de inicio"
+        },
+        "404": {
+            "code": "404",
+            "title": "Página no encontrada",
+            "body": "Lo sentimos, la página que buscas no existe o ha sido movida.",
+            "returnText": "Regresar a la página principal.",
+            "buttonText": "Ir a la página de inicio"
+        },
+        "500": {
+            "code": "500",
+            "title": "Error interno del servidor",
+            "body": "Algo salió mal en el servidor. Por favor, inténtalo de nuevo más tarde.",
+            "returnText": "Si el problema persiste, contacta al soporte técnico.",
+            "buttonText": "Ir a la página de inicio",
+            "contact": "Contactar al soporte",
+            "help": "¿Necesitas ayuda?"
+        }
+    },
     "menu": {
         "dashboard": "Tablero",
         "management": {
@@ -51,7 +76,7 @@
         "form": {
             "title": "Administración de usuarios",
             "list": "Lista de usuarios",
-            "icon": {
+            "tooltip": {
                 "edit": "Editar usuario",
                 "delete": "Eliminar usuario"
             },
@@ -72,6 +97,42 @@
                 "userNotFound": "No se encontraron usuarios",
                 "profileNotFound": "Sin perfil"
             }
+        },
+        "profile": {
+            "title": "Editar Perfil",
+            "form": {
+                "button": "Actualizar Perfil",
+                "name": "Nombre (s)",
+                "username": "Usuario",
+                "email": "Correo electrónico",
+                "lastname": "Apellido (s)",
+                "company": "Empresa",
+                "address": "Dirección",
+                "city": "Ciudad",
+                "country": "Pais",
+                "postal_code": "Código Postal",
+                "profiles": "Perfiles",
+                "genre": {
+                    "label": "Sexo",
+                    "placeholder": "Seleccione",
+                    "male": "Masculino",
+                    "female": "Femenino"
+                }
+            }
+        }
+    },
+    "support": {
+        "title": "Soporte",
+        "description": "¡Hola! Le invitamos a ponerse en contacto con nuestro equipo de soporte técnico mediante cualquiera de las vías que se indican a continuación.",
+        "email": {
+            "title": "Correo Electrónico",
+            "description": "A fin de brindarle una asistencia técnica efectiva, le solicitamos que nos envíe un correo electrónico con los detalles completos del incidente.</br>Esto nos permitirá diagnosticar el problema de manera oportuna y ofrecerle una solución precisa.",
+            "email": "contact@company.com"
+        },
+        "phone": {
+            "title": "¡Llamanos!",
+            "description": "Le invitamos a ponerse en contacto con nuestro equipo para recibir asistencia personalizada.</br>Estamos comprometidos a brindarle una solución eficiente.",
+            "number": "1 (234) 567890"
         }
     },
     "messages": {
@@ -79,7 +140,7 @@
             "warning": "¡Advertencia!",
             "error": "¡Error!",
             "info": "Info",
-            "successTitle": "¡Éxito!"
+            "success": "¡Éxito!"
         },
         "errors": {
             "genericError": "Ha ocurrido un error, por favor intente más tarde",

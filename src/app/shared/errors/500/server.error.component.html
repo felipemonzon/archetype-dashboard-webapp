@@ -1,0 +1,26 @@
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="card p-4 rounded bg-white">
+    <div class="card-body text-center">
+        <div class="d-flex justify-content-center mb-4">
+            <img [src]="'/images/500.png'" alt="server error" height="150" width="150" />
+        </div>
+        <h2 class="h3 fw-bold mb-3 text-dark">{{ 'app.errors.500.title' | translate }}</h2>
+        <p class="text-muted">{{ 'app.errors.500.body' | translate }}</p>
+        <hr class="my-4">
+        <p class="text-secondary">{{ 'app.errors.500.returnText' | translate }}</p>
+        <a routerLink="/" class="btn btn-primary btn-lg mt-3 shadow-sm rounded-pill">{{ 'app.errors.500.buttonText' | translate }}</a>
+        <div class="mt-4">
+            <h3 class="h5 fw-bold mb-2 text-dark">
+                {{ 'app.errors.500.help' | translate }}
+            </h3>
+            <ul class="list-unstyled d-flex justify-content-center gap-3">
+                <li>
+                    <a [routerLink]="['/home/support']" class="text-secondary text-decoration-none fw-bold">
+                        {{ 'app.errors.500.contact' | translate }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </div>
+</div>

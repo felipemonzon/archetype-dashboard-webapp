@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { UserModel } from "../../../features/user/model/user-model";
-import { AuthorityModel } from "../../../features/user/model/authority.model";
+import { AuthorityModel } from "../../../features/profile/model/authority.model";
 
 @Injectable({
   providedIn: "root",

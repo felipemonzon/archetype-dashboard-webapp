@@ -45,4 +45,9 @@ export class GlobalFunction {
     public static validateEmail(text: string): boolean {
         return GlobalFunction.MAIL_PATTERN.test(text);
     }
+
+    public static trimString(value: string | undefined) {
+         return value?.trim() ?? ''; 
+    }
+
 }

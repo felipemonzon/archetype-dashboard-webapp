@@ -4,4 +4,5 @@ export const environment = {
   login: '/users/authentication',
   menu: '/menu/active',
   user: '/users',
+  profile: '/profile'
 };

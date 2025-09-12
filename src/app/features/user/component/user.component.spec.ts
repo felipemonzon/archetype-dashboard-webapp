@@ -26,7 +26,12 @@ describe('UserComponent', () => {
       authorities: [],
       enterprise_name: 'Empresa A',
       enterprise_id: 1,
-      profiles: []
+      profiles: [],
+      social_networks: [],
+      address: '',
+      city: '',
+      country: '',
+      postal_code: 0
     },
     {
       id: '2',
@@ -41,7 +46,12 @@ describe('UserComponent', () => {
       authorities: [],
       enterprise_name: 'Empresa B',
       enterprise_id: 2,
-      profiles: []
+      profiles: [],
+      social_networks: [],
+      address: '',
+      city: '',
+      country: '',
+      postal_code: 0
     }
   ];
 

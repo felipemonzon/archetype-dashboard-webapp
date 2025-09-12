@@ -1,0 +1,126 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card card-user">
+            <div class="card-header no-padding">
+                <div class="card-image">
+                    <img ngSrc="images/background-image.jpeg" alt="background" fill>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="author">
+                    <img class="avatar border-gray" ngSrc="images/default-avatar.png" alt="avatar" width="124" height="124">
+                    <h5 class="card-title">{{full_name}}</h5>
+                </div>
+            </div>
+            <div class="card-footer">
+                <hr>
+                <div class="button-container text-center">
+                    @for (sn of social_networks; track sn.id) {
+                        <a class="btn btn-simple btn-link btn-icon" [href]="sn.path" target="_blank" role="button" rel="noopener noreferrer">
+                            <i class="fa fa-brands {{sn.icon}}"></i>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <form class="form" [formGroup]="profileForm()">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-header">
+                        <h4 class="card-title">{{'app.user.profile.title' | translate}}</h4>
+                    </div>
+                </div>
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-md-5 px-1">
+                            <div class="form-group">
+                                <label for="user">{{'app.user.profile.form.username' | translate}}</label>
+                                <input type="text" class="form-control" id="user" formControlName="user_name" [ngClass]="{'is-invalid': validateForm('user_name')}">
+                            </div>
+                        </div>
+                        <div class="col-md-7 pl-1">
+                            <div class="form-group">
+                                <label for="email">{{'app.user.profile.form.email' | translate}}</label>
+                                <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{'is-invalid': validateForm('email')}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 pr-1">
+                            <div class="form-group">
+                                <label for="first_name">{{'app.user.profile.form.name' | translate}}</label>
+                                <input type="text" class="form-control" id="first_name" formControlName="first_name" [ngClass]="{'is-invalid': validateForm('first_name')}">
+                            </div>
+                        </div>
+                        <div class="col-md-6 pl-1">
+                            <div class="form-group">
+                                <label for="last_name">{{'app.user.profile.form.lastname' | translate}}</label>
+                                <input type="text" class="form-control" id="last_name" formControlName="last_name" [ngClass]="{'is-invalid': validateForm('last_name')}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="col-md-4" for="genre">{{'app.user.profile.form.genre.label' | translate}}</label>
+                            <ng-select class="form-control" [selectOnTab]="true" bindValue="id" labelForId="genre" placeholder="{{'app.user.profile.form.genre.placeholder' | translate}}" formControlName="genre" [ngClass]="{ 'is-invalid': validateForm('genre')}">
+                                @for (genre of translatedGenres; track genre.value) {
+                                  <ng-option [value]="genre.value">{{genre.label}}</ng-option>
+                                }
+                            </ng-select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-md-4" for="profiles">{{'app.user.profile.form.profiles' | translate}}</label>
+                            <ng-select class="form-control" *ngIf="translatedGenres.length > 0" formControlName="profiles" [virtualScroll]="true" [selectOnTab]="true" bindValue="id" labelForId="profiles" placeholder="{{'app.user.profile.form.genre.placeholder' | translate}}" [multiple]="true" [ngClass]="{ 'is-invalid': validateForm('profiles')}">
+                                @for (profile of profiles; track profile.id) {
+                                    <ng-option [value]="profile.id">{{profile.value}}</ng-option>
+                                }
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="address">{{'app.user.profile.form.address' | translate}}</label>
+                                <input type="text" class="form-control" id="address" formControlName="address" [ngClass]="{'is-invalid': validateForm('address')}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 pr-1">
+                            <div class="form-group">
+                                <label for="city">{{'app.user.profile.form.city' | translate}}</label>
+                                <input type="text" class="form-control" id="city" formControlName="city" [ngClass]="{'is-invalid': validateForm('city')}">
+                            </div>
+                        </div>
+                        <div class="col-md-4 px-1">
+                            <div class="form-group">
+                                <label for="country">{{'app.user.profile.form.country' | translate}}</label>
+                                <input type="text" class="form-control" id="country" formControlName="country" [ngClass]="{'is-invalid': validateForm('country')}">
+                            </div>
+                        </div>
+                        <div class="col-md-4 pl-1">
+                            <div class="form-group">
+                                <label for="postal_code">{{'app.user.profile.form.postal_code' | translate}}</label>
+                                <input type="number" class="form-control" id="postal_code" formControlName="postal_code" min="0" [ngClass]="{'is-invalid': validateForm('postal_code')}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 pr-1">
+                            <div class="form-group">
+                                <label for="company">{{'app.user.profile.form.company' | translate}}</label>
+                                <input type="text" class="form-control" id="company" formControlName="company" [ngClass]="{'is-invalid': validateForm('company')}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-info btn-fill pull-right" (click)="save()">{{'app.user.profile.form.button' | translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

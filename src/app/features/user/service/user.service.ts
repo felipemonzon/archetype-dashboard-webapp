@@ -11,7 +11,7 @@ export class UserService {
   /**
    * URL de usuarios.
    */
-  private loginUrl = `${environment.baseUrl}${environment.user}`;
+  private userPath = `${environment.baseUrl}${environment.user}`;
 
   /**
    * Constructor.
@@ -22,7 +22,7 @@ export class UserService {
 
 
   public getData(): Observable<UserModel> {
-    return this.httpClient.get<UserModel>(this.loginUrl);
+    return this.httpClient.get<UserModel>(this.userPath);
   }
 
   public getDataMock(): Observable<UserModel[]> {
@@ -46,11 +46,21 @@ export class UserService {
         last_name: 'Monzón',
         cel: '123456789',
         genre: 'M',
+        address: 'Gran Apple',
+        city: 'New York',
+        country: 'USA',
+        postal_code: 1000,
         active: true,
         authorities: [],
         enterprise_name: 'Empresa XYZ',
         enterprise_id: 1,
-        profiles: []
+        profiles: [{
+          id: 1,
+          name: "Admin",
+          value: "ADMIN",
+          status: true
+        }],
+        social_networks: []
       }
   }
 

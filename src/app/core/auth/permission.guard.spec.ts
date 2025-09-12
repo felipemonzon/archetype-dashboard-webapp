@@ -59,7 +59,12 @@ describe('permissionGuard', () => {
       active: false,
       authorities: [],
       enterprise_name: '',
-      enterprise_id: 0
+      enterprise_id: 0,
+      social_networks: [],
+      address: '',
+      city: '',
+      country: '',
+      postal_code: 0
     });
 
     const result = TestBed.runInInjectionContext(() => permissionGuard({ data: { role: 'admin' } } as any, {} as any));
@@ -90,7 +95,12 @@ describe('permissionGuard', () => {
       active: false,
       authorities: [],
       enterprise_name: '',
-      enterprise_id: 0
+      enterprise_id: 0,
+      social_networks: [],
+      address: '',
+      city: '',
+      country: '',
+      postal_code: 0
     });
 
     const result = TestBed.runInInjectionContext(() => permissionGuard({ data: { role: 'admin' } } as any, {} as any));
@@ -122,7 +132,12 @@ describe('permissionGuard', () => {
       active: false,
       authorities: [],
       enterprise_name: '',
-      enterprise_id: 0
+      enterprise_id: 0,
+      social_networks: [],
+      address: '',
+      city: '',
+      country: '',
+      postal_code: 0
     });
     const result = TestBed.runInInjectionContext(() => permissionGuard({ data: {} } as any, {} as any));
   

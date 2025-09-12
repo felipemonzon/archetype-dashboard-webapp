@@ -1,0 +1,67 @@
+<div class="pt-0 line-bottom-light">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row justify-content-md-center">
+            <div class="card p-4 rounded bg-white col-md-6">
+                <div class="card-title">
+                    <div class="text-center px-4">
+                        <div class="icon icon-sm icon-shape icon-shape-primary rounded mb-4">
+                            <img [src]="'/images/support.png'" alt="server error" height="100" width="100" />
+                        </div>
+                        <h5 class="mb-3">
+                            {{ 'app.support.title' | translate }}
+                        </h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-center">
+                        {{ 'app.support.description' | translate }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-start mb-5 mb-lg-0">
+            <div class="col-md-6">
+                <div class="card p-4 rounded bg-white">
+                    <div class="card-title">
+                        <div class="text-center px-4">
+                            <div class="icon icon-sm icon-shape icon-shape-primary rounded mb-4">
+                                <img [src]="'/images/email-us.png'" alt="server error" height="50" width="50" />
+                            </div>
+                            <h5 class="mb-3">
+                                {{ 'app.support.email.title' | translate }}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text text-center" [innerHTML]="'app.support.email.description' | translate"></p>
+                        <p class="card-text text-center fw-bold">
+                            {{ 'app.support.email.email' | translate }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4 rounded bg-white">
+                    <div class="card-title">
+                        <div class="text-center">
+                            <div class="icon icon-sm icon-shape icon-shape-primary rounded mb-4">
+                                <img [src]="'/images/call-us.png'" alt="server error" height="50" width="50" />
+                            </div>
+                            <h5 class="mb-3">
+                                {{ 'app.support.phone.title' | translate }}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text text-center" [innerHTML]="'app.support.phone.description' | translate"></p>
+                        <p class="card-text text-center fw-bold">
+                            {{ 'app.support.phone.number' | translate }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

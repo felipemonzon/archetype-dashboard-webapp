@@ -21,7 +21,8 @@ describe('LoginComponent', () => {
 
     // Crea un mock para el LoginService
     const loginServiceMock = {
-      login: jasmine.createSpy('login').and.returnValue(of({ success: true }))
+      login: jasmine.createSpy('login').and.returnValue(of({ success: true })),
+      loginMock: jasmine.createSpy('loginMock').and.returnValue(of({}))
     };
 
     await TestBed.configureTestingModule({
@@ -84,6 +85,7 @@ describe('LoginComponent', () => {
     // Llama al método de login
     component.login();
 
+    expect(loginService.loginMock).toHaveBeenCalled();
     // Verifica que el método navigate del Router haya sido llamado con "home"
     expect(router.navigate).toHaveBeenCalledWith(['home']);
   });

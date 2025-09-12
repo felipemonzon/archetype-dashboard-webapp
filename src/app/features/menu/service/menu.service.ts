@@ -37,7 +37,7 @@ export class MenuService {
           id: 2,
           title: 'app.menu.management.settings',
           icon: 'fa fa-cog',
-          path: '/admin/settings',
+          path: 'settings',
           children: []
         }
       ]

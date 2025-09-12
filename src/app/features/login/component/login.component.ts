@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loginService.loginMock();
     this.router.navigate(["home"]);
   }
 

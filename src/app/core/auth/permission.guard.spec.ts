@@ -138,6 +138,7 @@ describe('permissionGuard', () => {
       city: '',
       country: '',
       postal_code: 0
+
     });
     const result = TestBed.runInInjectionContext(() => permissionGuard({ data: {} } as any, {} as any));
   

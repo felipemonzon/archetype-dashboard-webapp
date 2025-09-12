@@ -12,7 +12,6 @@ on:
     branches:
       - 'fix-release/**'  # Activa el flujo de trabajo en pushes a ramas que coincidan con este patrón
 
-
 # Define los trabajos (jobs) que se ejecutarán
 jobs:
   pipeline:

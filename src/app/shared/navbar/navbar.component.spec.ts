@@ -5,6 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ElementRef, Renderer2 } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
+
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;

@@ -12,7 +12,7 @@ concurrency:
 on:
   push:
     branches:
-      - develop  # Se inicia en cada push a la rama 'develop'
+      - release  # Se inicia en cada push a la rama 'develop'
 
 jobs:
   pipeline:

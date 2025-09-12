@@ -46,6 +46,10 @@
               {
                 "input": "node_modules/@fortawesome/fontawesome-free/css/all.css",
                 "inject": true
+              },
+              {
+                "input": "node_modules/@ng-select/ng-select/themes/default.theme.css",
+                "inject": true
               }
             ],
             "scripts": [
@@ -59,7 +63,10 @@
             "ssr": false,
             "allowedCommonJsDependencies": [
                 "sweetalert2"
-            ]
+            ],
+            "security": {
+              "autoCsp": true
+            }
           },
           "configurations": {
             "production": {

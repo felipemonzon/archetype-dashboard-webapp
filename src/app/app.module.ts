@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,12 @@ import { MissingTranslationHandler, TranslateLoader, TranslateModule } from "@ng
 import { MyMissingTranslationHandler } from './core/exception/missing.translation.exception';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpLoaderFactory } from './shared/config/translate.config';
+import { NotfoundComponent } from './shared/errors/404/notFound.component';
+import { ForbiddenComponent } from './shared/errors/403/forbidden.component';
+import { ServerErrorComponent } from './shared/errors/500/server.error.component';
+import { ProfileComponent } from './features/profile/component/profile.component';
+import { NgOptimizedImage } from '@angular/common';
+import { SupportComponent } from './features/support/component/support.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +35,12 @@ import { HttpLoaderFactory } from './shared/config/translate.config';
     SidebarComponent,
     LoginComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    NotfoundComponent,
+    ForbiddenComponent,
+    ServerErrorComponent,
+    ProfileComponent,
+    SupportComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +62,8 @@ import { HttpLoaderFactory } from './shared/config/translate.config';
         useClass: MyMissingTranslationHandler,
       },
     }),
+    NgSelectModule,
+    NgOptimizedImage
   ],
   providers: [
     provideClientHydration(),

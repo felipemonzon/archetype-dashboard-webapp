@@ -5,6 +5,7 @@ import { NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 import { ngxUiLoaderConfig } from './shared/config/loader-config';
 import { HomeComponent } from './shared/home/home.component';
 import { LoginComponent } from './features/login/component/login.component';
+import { NotfoundComponent } from './shared/errors/404/notFound.component';
 
 const routes: Routes = [
   { path: "", pathMatch: 'full', redirectTo: 'login' },
@@ -15,7 +16,8 @@ const routes: Routes = [
           m => m.HomeLayoutModule
         )
     }]
-  }
+  },
+  { path: '**', component: NotfoundComponent } // Ruta comodín para manejar rutas no definidas (debe ir al final).
 ];
 
 @NgModule({

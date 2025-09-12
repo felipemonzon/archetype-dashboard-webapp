@@ -36,6 +36,14 @@
      }
  }
  
+.error-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
  .modal.show .modal-dialog {
      -webkit-transform: translate(0, 30%);
      -o-transform: translate(0, 30%);
@@ -5127,7 +5135,7 @@ table.bg-black>thead>tr>th {
      font-size: 0.75rem;
      font-weight: 600;
      text-transform: uppercase;
-     border-radius: 50%;
+     /* border-radius: 50%; */
      border: 4px solid rgba(255, 255, 255, 0.3);
      overflow: hidden;
      margin: 0 auto;

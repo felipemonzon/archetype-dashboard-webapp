@@ -27,7 +27,7 @@ import { HttpLoaderFactory } from "../config/translate.config";
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
-    }),
+    })
   ],
   declarations: [
     WelcomeComponent,

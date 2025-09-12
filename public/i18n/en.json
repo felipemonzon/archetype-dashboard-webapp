@@ -4,6 +4,31 @@
         "complete": "Archetype angular dashboard",
         "short": "Archetype"
     },
+    "errors": {
+        "403": {
+            "code": "403",
+            "title": "Access Denied",
+            "body": "Sorry, you don't have permission to access this page.",
+            "returnText": "Please contact the administrator or return to the home page to continue.",
+            "buttonText": "Go to Home Page"
+        },
+        "404": {
+            "code": "404",
+            "title": "Page Not Found",
+            "body": "Sorry, the page you are looking for does not exist or has been moved.",
+            "returnText": "Return to the main page.",
+            "buttonText": "Go to Home Page"
+        },
+        "500": {
+            "code": "500",
+            "title": "Internal Server Error",
+            "body": "Something went wrong on the server. Please try again later.",
+            "returnText": "If the problem persists, contact technical support.",
+            "buttonText": "Go to Home Page",
+            "contact": "Contact Support",
+            "help": "Need Help?"
+        }
+    },
     "menu": {
         "dashboard": "Dashboard",
         "management": {
@@ -42,7 +67,7 @@
         "form": {
             "title": "User Management",
             "list": "User List",
-            "icon": {
+            "tooltip": {
                 "edit": "Edit User",
                 "delete": "Delete User"
             },
@@ -63,14 +88,42 @@
                 "userNotFound": "No users found",
                 "profileNotFound": "No profiles found"
             }
+        },
+        "profile": {
+            "title": "Edit Profile",
+            "form": {
+                "button": "Update Profile",
+                "name": "First Name",
+                "lastname": "Last Name",
+                "username": "Username",
+                "email": "Email",
+                "company": "Company",
+                "address": "Address",
+                "city": "City",
+                "country": "Country",
+                "postal_code": "Postal Code"
+            },
+            "support": {
+                "title": "Support",
+            "description": "Hello! We invite you to contact our technical support team using any of the methods listed below.",
+            "email": {
+                "title": "Email us",
+                "description": "In order to provide you with effective technical assistance, we ask that you send us an email with the complete details of the incident.</br>This will allow us to diagnose the problem in a timely manner and offer you an accurate solution.",
+                "email": "office@company.com"
+            },
+            "phone": {
+                "title": "Call us",
+                "description": "We invite you to contact our team for personalized assistance.</br>We are committed to providing you with an efficient solution.",
+                "number": "1 (234) 567890"
+            }
         }
     },
     "messages": {
         "title": {
-            "warning": "Warning!",
-            "error": "Error!",
+            "warning": "¡Warning!",
+            "error": "Error",
             "info": "Info",
-            "successTitle": "Success!"
+            "success": "Success"
         },
         "errors": {
             "genericError": "An error has occurred, please try again later",

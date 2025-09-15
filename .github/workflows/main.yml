@@ -1,0 +1,69 @@
+
+
+# Nombre del flujo de trabajo de GitHub Actions
+name: CI/CD Main
+
+# Configura la concurrencia para evitar ejecuciones simultáneas
+concurrency:
+  group: main
+  cancel-in-progress: true
+
+# Define el evento que activa el flujo de trabajo
+on:
+  push:
+    branches:
+      - main  # Se inicia en cada push a la rama 'release'
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    environment: main
+    permissions:
+      contents: read
+    
+    # Define las variables de entorno para el trabajo
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
+      SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+      SONAR_URL: ${{ secrets.SONAR_URL }}
+
+    # Pasos del trabajo
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Ejecutar pruebas
+        run: npm run test -- --no-watch --no-progress --code-coverage --browsers=ChromeHeadlessNoSandbox
+
+        # Paso de depuración: Lista los archivos en el directorio de trabajo
+      - name: Validar la existencia del informe de cobertura
+        run: |
+          if [ -f "coverage/archetype-dashboard-webapp/lcov.info" ]; then
+            echo "✅ ¡Informe de cobertura encontrado!"
+          else
+            echo "❌ Error: No se encontró el informe de cobertura lcov.info."
+            exit 1
+          fi
+      - name: Análisis de SonarCloud
+        if: success()
+        uses: SonarSource/sonarqube-scan-action@v5
+        with:
+          args: >
+            -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ env.SONAR_ORGANIZATION }}
+            -Dsonar.host.url=${{ env.SONAR_URL }}
+            -Dsonar.token=${{ env.SONAR_TOKEN }}
+            -Dsonar.javascript.lcov.reportPaths=coverage/archetype-dashboard-webapp/lcov.info
+            -Dsonar.coverage.exclusions=**/*.spec.ts,**/*.test.ts,**/style.*,**/karma.conf.js
+            -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/*.spec.ts,**/*.test.ts,**/style.*,**/karma.conf.js,**/Dockerfile,**/*.html

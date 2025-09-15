@@ -1,7 +1,7 @@
 
 
 # Nombre del flujo de trabajo de GitHub Actions
-name: CI/CD Main
+name: CI/CD merge Main
 
 # Configura la concurrencia para evitar ejecuciones simultáneas
 concurrency:

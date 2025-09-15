@@ -1,23 +1,23 @@
 # Nombre del flujo de trabajo de GitHub Actions
-name: Angular CI/CD
+name: CI/CD fix-release
 
 # Configuración de concurrencia para evitar ejecuciones simultáneas
 concurrency:
-  group: develop
+  group: release
   cancel-in-progress: true
 
 # Define los eventos que activan el flujo de trabajo
 on:
   push:
     branches:
-      - 'feature/**'  # Activa el flujo de trabajo en pushes a ramas que coincidan con este patrón
+      - 'fix-release/**'  # Activa el flujo de trabajo en pushes a ramas que coincidan con este patrón
 
 # Define los trabajos (jobs) que se ejecutarán
 jobs:
   pipeline:
     # El trabajo se ejecuta en el sistema operativo Ubuntu más reciente
     runs-on: ubuntu-latest
-    environment: develop  # Entorno de despliegue
+    environment: release  # Entorno de despliegue
 
     # Add this permissions block to grant the GITHUB_TOKEN write access to pull requests
     permissions:
@@ -100,10 +100,10 @@ jobs:
           retention-days: 7
 
       # --- Etapa de Pull Request ---
-      # Paso 5: Crear un pull request al main si el flujo de trabajo es exitoso
+      # Paso 5: Crear un pull request a release si el flujo de trabajo es exitoso
       # Este paso se puede ajustar para diferentes escenarios de despliegue
       - name: Crear Pull Request
-        if: success() && startsWith(github.ref, 'refs/heads/feature/') # O la rama que uses para tu CI
+        if: success() && startsWith(github.ref, 'refs/heads/fix-release/') # O la rama que uses para tu CI
         uses: actions/github-script@v6
         with:
           script: |
@@ -111,7 +111,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 head: context.ref.replace('refs/heads/', ''),
-                base: 'develop',
+                base: 'release',
               });
 
               if (pullRequests.length > 0) {
@@ -123,7 +123,7 @@ jobs:
                   repo: context.repo.repo,
                   title: 'feat: Automatic Pull Request from CI',
                   head: context.ref.replace('refs/heads/', ''),
-                  base: 'develop',
+                  base: 'release',
                   body: 'This is an auto-generated pull request from the CI/CD workflow.'
                 });
                 core.info(`Created pull request: ${pull.html_url}`);

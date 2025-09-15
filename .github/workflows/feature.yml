@@ -1,0 +1,131 @@
+# Nombre del flujo de trabajo de GitHub Actions
+name: CI/CD feature
+
+# Configuración de concurrencia para evitar ejecuciones simultáneas
+concurrency:
+  group: develop
+  cancel-in-progress: true
+
+# Define los eventos que activan el flujo de trabajo
+on:
+  push:
+    branches:
+      - 'feature/**'  # Activa el flujo de trabajo en pushes a ramas que coincidan con este patrón
+
+# Define los trabajos (jobs) que se ejecutarán
+jobs:
+  pipeline:
+    # El trabajo se ejecuta en el sistema operativo Ubuntu más reciente
+    runs-on: ubuntu-latest
+    environment: develop  # Entorno de despliegue
+
+    # Add this permissions block to grant the GITHUB_TOKEN write access to pull requests
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+
+    # Define las variables de entorno para el trabajo
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Secreto para la autenticación en SonarCloud
+      SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}  # Reemplaza con tu organización de SonarCloud
+      SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }} # Reemplaza con la clave de tu proyecto en SonarCloud
+      SONAR_URL: ${{ secrets.SONAR_URL }}  # URL de SonarCloud
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+      # Pasos del trabajo
+    steps:
+      # Paso 1: Checkout del código del repositorio
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+        with:
+          # Necesario para el análisis de SonarCloud de los pull requests
+          fetch-depth: 0
+
+      # Paso 2: Configurar Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # Usa una versión LTS de Node.js, como la 18
+
+      # Paso 3: Instalar dependencias de Node.js
+      - name: Instalar dependencias
+        run: npm install
+      
+      # PASO ADICIONAL: Instalar Puppeteer para pruebas en entorno CI
+      - name: Instalar Puppeteer
+        run: npm install puppeteer --save-dev
+      # PASO ADICIONAL: Instalar karma-junit-reporter para reportes de pruebas
+      - name: Instalar karma-junit-reporter
+        run: npm install karma-junit-reporter --save-dev
+
+      # --- Etapa de Build ---
+      - name: Construir el proyecto
+        run: npm run build -- --configuration=production
+
+      # --- Etapa de Test ---
+      - name: Ejecutar pruebas unitarias
+        run: npm run test -- --no-watch --no-progress --code-coverage --browsers=ChromeHeadlessNoSandbox
+
+      # Paso de depuración: Lista los archivos en el directorio de trabajo
+      - name: Validar la existencia del informe de cobertura
+        run: |
+          if [ -f "coverage/archetype-dashboard-webapp/lcov.info" ]; then
+            echo "✅ ¡Informe de cobertura encontrado!"
+          else
+            echo "❌ Error: No se encontró el informe de cobertura lcov.info."
+            exit 1
+          fi
+
+      # --- Etapa de SonarCloud ---
+      # Paso 4: Instalar y ejecutar el escáner de SonarCloud
+      - name: Análisis de SonarCloud
+        if: success()  # Se ejecuta solo si las etapas anteriores fueron exitosas
+        uses: SonarSource/sonarqube-scan-action@v5
+        with:
+          args: >
+            -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ env.SONAR_ORGANIZATION }}
+            -Dsonar.host.url=${{ env.SONAR_URL }}
+            -Dsonar.token=${{ env.SONAR_TOKEN }}
+            -Dsonar.javascript.lcov.reportPaths=coverage/archetype-dashboard-webapp/lcov.info
+            -Dsonar.coverage.exclusions=**/*.spec.ts,**/*.test.ts,**/karma.conf.js,**/style.*
+            -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/test/**,**/*.spec.ts,**/*.test.ts,**/karma.conf.js,**/style.*,**/Dockerfile,**/*.html
+
+      - name: 'Subir informe de cobertura de código'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage
+          retention-days: 7
+
+      # --- Etapa de Pull Request ---
+      # Paso 5: Crear un pull request al main si el flujo de trabajo es exitoso
+      # Este paso se puede ajustar para diferentes escenarios de despliegue
+      - name: Crear Pull Request
+        if: success() && startsWith(github.ref, 'refs/heads/feature/') # O la rama que uses para tu CI
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: pullRequests } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                head: context.ref.replace('refs/heads/', ''),
+                base: 'develop',
+              });
+
+              if (pullRequests.length > 0) {
+                core.info('Pull request already exists. Skipping creation.');
+                return;
+              } else {
+                const { data: pull } = await github.rest.pulls.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title: 'feat: Automatic Pull Request from CI',
+                  head: context.ref.replace('refs/heads/', ''),
+                  base: 'develop',
+                  body: 'This is an auto-generated pull request from the CI/CD workflow.'
+                });
+                core.info(`Created pull request: ${pull.html_url}`);
+              }
+

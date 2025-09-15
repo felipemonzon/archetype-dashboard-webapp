@@ -1,7 +1,7 @@
 
 
 # Nombre del flujo de trabajo de GitHub Actions
-name: CI/CD merge Main
+name: CI/CD Main
 
 # Configura la concurrencia para evitar ejecuciones simultáneas
 concurrency:
@@ -12,7 +12,7 @@ concurrency:
 on:
   push:
     branches:
-      - release  # Se inicia en cada push a la rama 'release'
+      - main  # Se inicia en cada push a la rama 'release'
 
 jobs:
   pipeline:
@@ -67,33 +67,3 @@ jobs:
             -Dsonar.javascript.lcov.reportPaths=coverage/archetype-dashboard-webapp/lcov.info
             -Dsonar.coverage.exclusions=**/*.spec.ts,**/*.test.ts,**/style.*,**/karma.conf.js
             -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/*.spec.ts,**/*.test.ts,**/style.*,**/karma.conf.js,**/Dockerfile,**/*.html
-
-  # --- Nueva sección para el push automático a 'main' ---
-  deploy-to-main:
-    name: Despliegue a Main
-    runs-on: ubuntu-latest
-    needs: pipeline  # Se ejecuta solo si el job 'pipeline' es exitoso
-    if: success()
-    permissions:
-      contents: write # Se necesitan permisos de escritura para hacer el push
-    
-    steps:
-      - name: Checkout del repositorio
-        uses: actions/checkout@v4
-        with:
-          # Es necesario obtener todo el historial para las operaciones de merge
-          fetch-depth: 0
-
-      - name: Configurar Git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout main
-
-      - name: Fusionar 'release' a 'main'
-        run: |
-          git merge origin/release -m "Merge release into main via GitHub Actions"
-          git checkout main
-
-      - name: Subir cambios a 'main'
-        run: git push

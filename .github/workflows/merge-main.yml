@@ -93,7 +93,19 @@ jobs:
       - name: Fusionar 'release' a 'main'
         run: |
           git merge origin/release -m "Merge release into main via GitHub Actions"
-          git checkout main
 
       - name: Subir cambios a 'main'
         run: git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+      - name: Notificar éxito
+        if: success()
+        run: |
+          echo "✅ Fusión de 'release' a 'main' exitosa."
+
+      - name: Notificar fallo de fusión
+        if: failure()
+        run: |
+          echo "❌ La fusión de 'release' a 'main' ha fallado. Conflicto detectado."
+          echo "Por favor, resuelve el conflicto manualmente."

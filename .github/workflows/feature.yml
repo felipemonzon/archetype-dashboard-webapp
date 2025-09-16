@@ -1,5 +1,5 @@
 # Nombre del flujo de trabajo de GitHub Actions
-name: Angular CI/CD
+name: CI/CD feature
 
 # Configuración de concurrencia para evitar ejecuciones simultáneas
 concurrency:

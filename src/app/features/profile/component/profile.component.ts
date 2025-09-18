@@ -23,9 +23,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   translatedGenres: {value: string; label: string;}[] = [];
   private langChangeSubscription: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder, 
-    private translate: TranslateService,
-    private profileService: ProfileService) {}
+  constructor(private readonly fb: FormBuilder, 
+    private readonly translate: TranslateService,
+    private readonly profileService: ProfileService) {}
 
   ngOnInit(): void {
     this.loadTranslations();

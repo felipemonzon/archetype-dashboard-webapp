@@ -35,6 +35,12 @@
             "title": "Administración",
             "users": "Usuarios",
             "settings": "Configuración"
+        },
+        "error" : {
+            "title": "Errores",
+            "not_found": "400 No encontrada",
+            "forbidden": "403 Acceso Denegado",
+            "server": "500 Server Error"
         }
     },
     "copyright": "Made with love for a better web",

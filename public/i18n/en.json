@@ -35,6 +35,12 @@
             "title": "Management",
             "users": "Users",
             "settings": "Settings"
+        },
+        "error": {
+            "title": "Errors",
+            "not_found": "400 Not Found",
+            "forbidden": "403 Forbidden",
+            "server": "500 Server Error"
         }
     },
     "copyright": "Made with love for a better web",

@@ -11,7 +11,7 @@ export class UserService {
   /**
    * URL de usuarios.
    */
-  private userPath = `${environment.baseUrl}${environment.user}`;
+  private readonly userPath = `${environment.baseUrl}${environment.user}`;
 
   /**
    * Constructor.

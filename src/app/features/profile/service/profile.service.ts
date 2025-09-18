@@ -11,14 +11,14 @@ export class ProfileService {
   /**
    * URL de perfiles.
    */
-  private profilePath = `${environment.baseUrl}${environment.profile}`;
+  private readonly profilePath = `${environment.baseUrl}${environment.profile}`;
 
   /**
    * Constructor.
    *
    * @param httpClient cliente http
    */
-  constructor(private httpClient: HttpClient) {}
+  constructor(private readonly httpClient: HttpClient) {}
 
 
   public getData(): Observable<AuthorityModel> {

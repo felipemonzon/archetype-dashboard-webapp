@@ -22,6 +22,34 @@ export class MenuService {
       children: []
     },
     {
+      id: 3,
+      title: 'app.menu.error.title',
+      icon: 'fa fa-bug',
+      children: [
+        {
+          id: 1,
+          title: 'app.menu.error.not_found',
+          icon: 'fa fa-xmark',
+          path: 'not_found',
+          children: []
+        },
+        {
+          id: 2,
+          title: 'app.menu.error.forbidden',
+          icon: 'fa fa-xmark',
+          path: 'error/forbidden',
+          children: []
+        },
+        {
+          id: 3,
+          title: 'app.menu.error.server',
+          icon: 'fa fa-xmark',
+          path: 'error/server',
+          children: []
+        }
+      ]
+    },
+    {
       id: 2,
       title: 'app.menu.management.title',
       icon: 'fa fa-cogs',
